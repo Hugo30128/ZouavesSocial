@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonDislike"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#E91E63"
+        android:gravity="center"
+        android:text="N"
+        app:layout_constraintStart_toEndOf="@+id/buttonLike"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/UserName"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="UserName"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:text="Ceci sera les commentaires que l'utilisateur veut mettre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserName" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Commentaire"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/buttonLike"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+
+        android:backgroundTint="#4CAF50"
+        android:gravity="center"
+        android:text="Y"
+        app:iconTint="#3F51B5"
+        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
