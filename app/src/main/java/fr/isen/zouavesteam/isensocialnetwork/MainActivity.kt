@@ -19,25 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Firebase.database.getReference("message").addValueEventListener(object :ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.getValue<String>()
-                Log.d("TAG", "Value is: " + value)
-                findViewById<TextView>(R.id.textView).text=value
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.w("TAG", "Failed to read value.", error.toException())
-            }
-        })
-
-
-
-        findViewById<Button>(R.id.mainAction).setOnClickListener{
-            // Write a message to the database
-            val database = Firebase.database
-            val myRef = database.getReference("message")
-            myRef.setValue("Hello, World!")
-        }
     }
 }
