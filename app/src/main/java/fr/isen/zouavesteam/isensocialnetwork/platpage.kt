@@ -17,6 +17,7 @@ class platpage : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.recyclerPostView.layoutManager = LinearLayoutManager(this)
+
     }
 
 
