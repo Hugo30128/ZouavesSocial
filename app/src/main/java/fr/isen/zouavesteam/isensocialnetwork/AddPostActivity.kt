@@ -1,6 +1,7 @@
 package fr.isen.zouavesteam.isensocialnetwork
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,10 +21,12 @@ class AddPostActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddPostBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityAddPostBinding.inflate(layoutInflater)
-        class DataPost constructor(val User: String, val url: String, val Post: String) {}
         setContentView(binding.root)
-        val name = "TKetsu"
+        class DataPost constructor(val User: String, val url: String, val Post: String) {}
+        val name = intent.extras?.getString("USER") ?: "No message found"
+        println(name)
         binding.Titre.text=name
         /* RECUPERATION DES INFO*/
         binding.Download.setOnClickListener {
