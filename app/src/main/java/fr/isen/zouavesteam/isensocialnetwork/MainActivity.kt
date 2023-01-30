@@ -1,5 +1,6 @@
 package fr.isen.zouavesteam.isensocialnetwork
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -18,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         Firebase.database.getReference("message").addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val value = snapshot.getValue<String>()
@@ -31,8 +31,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
-
         findViewById<Button>(R.id.mainAction).setOnClickListener{
             // Write a message to the database
             val database = Firebase.database
@@ -40,4 +38,5 @@ class MainActivity : AppCompatActivity() {
             myRef.setValue("Hello, World!")
         }
     }
+
 }
