@@ -15,7 +15,6 @@ class platpage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPlatpageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.recyclerPostView.layoutManager = LinearLayoutManager(this)
 
     }
