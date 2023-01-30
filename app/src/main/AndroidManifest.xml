@@ -12,7 +12,7 @@
         android:theme="@style/Theme.IsenSocialNetwork"
         tools:targetApi="31">
         <activity
-            android:name=".SearchBAR"
+            android:name=".platpage"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
