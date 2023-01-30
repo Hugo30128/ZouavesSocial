@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "543928704784",
+    "project_id": "isensocialnetwork-zouave",
+    "storage_bucket": "isensocialnetwork-zouave.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543928704784:android:3e6abfa216d24d942fcf95",
+        "android_client_info": {
+          "package_name": "fr.isen.zouavesteam.isensocialnetwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543928704784-huh8jogsjiebt3vh3dt8mhe46s2g8r4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiT2OPyCiCF6NTcveYnOkeXTMBGxjCJ3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "543928704784-huh8jogsjiebt3vh3dt8mhe46s2g8r4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
