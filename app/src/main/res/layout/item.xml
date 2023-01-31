@@ -30,13 +30,13 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/UserName"
+        android:id="@+id/TITLE"
         android:layout_width="100dp"
         android:layout_height="25dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text="UserName"
+        android:text="title"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,7 +52,7 @@
         android:text="Ceci sera les commentaires que l'utilisateur veut mettre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UserName" />
+        app:layout_constraintTop_toBottomOf="@+id/TITLE" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"

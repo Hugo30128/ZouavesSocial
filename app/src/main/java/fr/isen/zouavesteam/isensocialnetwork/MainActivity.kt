@@ -29,13 +29,9 @@ class MainActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.title = "Legends of Maximus"
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
-
-        binding.redirectInscription.setOnClickListener{
+        binding.redirectInscription.setOnClickListener {
             val intent = Intent(this, InscriptionActivity::class.java)
             startActivity(intent)
         }
-
-
-
     }
 }
