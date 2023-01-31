@@ -4,6 +4,7 @@ import android.R
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -35,22 +36,17 @@ class AddPostActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
         /* RECUPERATION DES INFO*/
+
         binding.Download.setOnClickListener {
-            class Post constructor(val description: String, val id: Int,val img : String,val postContent: String, val username: String){}
+            // class Post constructor(val description: String, val id: Int,val postContent: String, val username: String){}
             val username = intent.getStringExtra("USER") ?: ""
             val description: String = binding.Post.getText().toString()
             val title:String=binding.Post.getText().toString()
-            val url: String = binding.URL.getText().toString()
-            //val creationPost:Post = Post(description, url, title, username)
-
-            //.push() créer un nouvel identifiant,setValue()
-
-            val myRef = database.getReference("POST").child("POST 2")
+            val img: Uri? =null
+            val Post = Post(description,img,title,username)
+            val myRef = database.getReference("POST").child("POST")
             val intent=Intent(this,PostPageActivity::class.java)
             startActivity(intent)
-
-
-
         }
         binding.imgDownload.setOnClickListener {
             pickImageGallery()
