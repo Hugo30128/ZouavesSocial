@@ -3,20 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <Button
-        android:id="@+id/buttonDislike"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#E91E63"
-        android:gravity="center"
-        android:text="N"
-        app:layout_constraintStart_toEndOf="@+id/buttonLike"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-/>
+    android:layout_height="match_parent"
+    android:background="#425b8a">
 
     <ImageView
         android:id="@+id/imageView"
@@ -31,13 +19,14 @@
 
     <TextView
         android:id="@+id/TITLE"
-        android:layout_width="100dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="159dp"
+        android:layout_height="64dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="title"
+        android:textSize="50dp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,29 +45,48 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
 
+        android:layout_marginTop="15dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Commentaire"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/like" />
+
+    <Button
+        android:id="@+id/partage"
+        android:layout_width="50dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="25dp"
+
+        android:layout_marginTop="12dp"
+        android:background="@drawable/partage"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/like" />
+
+    <Button
+        android:id="@+id/like"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/like"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/buttonLike"
-        android:layout_width="50dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-
-        android:backgroundTint="#4CAF50"
-        android:gravity="center"
-        android:text="Y"
-        app:iconTint="#3F51B5"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+        android:id="@+id/dislike"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/dislike"
+        app:layout_constraintStart_toEndOf="@+id/like"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
