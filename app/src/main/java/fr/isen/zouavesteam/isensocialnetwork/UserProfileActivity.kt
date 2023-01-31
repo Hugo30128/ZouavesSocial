@@ -10,11 +10,27 @@ import android.graphics.Color
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.widget.ImageView
+import android.widget.Toast
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class UserProfileActivity : AppCompatActivity() {
+    private lateinit var etext:EditText
+    private lateinit var BTN:Button
+    private lateinit var dbR:DatabaseReference
+    private var id=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
+
+        //test envoie msg
+        etext = findViewById<EditText>(R.id.test)
+        BTN = findViewById<Button>(R.id.testbtn)
+        dbR =FirebaseDatabase.getInstance().getReference("test")
+        BTN.setOnClickListener{
+            IData()
+        }
+
 
         val actionBar = supportActionBar
         actionBar!!.title = "Maximus"
@@ -52,7 +68,7 @@ class UserProfileActivity : AppCompatActivity() {
         }
 
         val button3 = findViewById<Button>(R.id.typeplayer)
-        val textView3 = findViewById<TextView>(R.id.type)
+        val textView3 = findViewById<TextView>(R.id.type2)
 
         button3.setOnClickListener {
             val input = EditText(this)
@@ -97,6 +113,25 @@ class UserProfileActivity : AppCompatActivity() {
                 .setNegativeButton("Annuler") { _, _ -> }
                 .create()
             dialog.show()
+        }
+    }
+
+    private fun IData(){
+        val txt = etext.text.toString()
+        if (txt.isEmpty()){
+            etext.error = "empty"
+        }
+        else{
+            dbR.child(id.toString()).setValue(txt)
+                .addOnCompleteListener{
+                    Toast.makeText(this,"insert",Toast.LENGTH_SHORT).show()
+                    etext.text.clear()
+                }
+                .addOnFailureListener{
+                        err ->
+                    Toast.makeText(this,"Fail",Toast.LENGTH_SHORT).show()
+                }
+            id +=1
         }
     }
 }
