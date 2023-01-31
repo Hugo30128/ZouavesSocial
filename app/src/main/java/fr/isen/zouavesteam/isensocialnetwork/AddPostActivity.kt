@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,7 @@ import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityAddPostBinding
 import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityPostPageBinding
+import kotlin.random.Random
 
 
 @Suppress("DEPRECATION")
@@ -30,8 +32,8 @@ class AddPostActivity : AppCompatActivity() {
     val database = Firebase.database
     val storage = Firebase.storage.reference
     val storageRef = storage.child("/image")
-    var img = "gs://isensocialnetwork-zouave.appspot.com/image"
-    var key:Long=0
+    val key = Random.nextInt(0,100)
+    lateinit var img : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,49 +42,41 @@ class AddPostActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
 
-
         binding.Download.setOnClickListener {
             val username = intent.getStringExtra("USER") ?: ""
             val description: String = binding.Post.getText().toString()
-            val title:String=binding.Post.getText().toString()
-            img += binding.URL.getText().toString()
-            val Post = Post(description,img,title,username)
-            val intent=Intent(this,PostPageActivity::class.java)
-            Firebase.database.getReference("posts").push().setValue(Post(description,img,title,username))
+            val title: String = binding.Post.getText().toString()
+            var img = binding.URL.getText().toString()
+            val Post = Post(description, img, title, username)
+            val intent = Intent(this, PostPageActivity::class.java)
+            Firebase.database.getReference("posts").push()
+                .setValue(Post(description, img, title, username))
         }
 
 
         binding.imgDownload.setOnClickListener {
             pickImageGallery()
+
         }
     }
+
     private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_REQUEST_CODE)
     }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        Firebase.database.getReference("posts").addValueEventListener(object :ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val key:Long = snapshot.childrenCount
-                val Data=snapshot.children.map{ it.getValue<Post>() }
-                val img=Data.first()?.img //Se déplacer sur n'importe quel élement
-                println("Clé primaire"+key.toString())
-                println("img name"+img)
-                Log.d("TAG", "Value is: " + key)
-                if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
-                    binding.imgDownload.setImageURI(data?.data)
-                    val photo = storageRef.child (img.toString()+key)
-                    data?.data?.let { photo.putFile(it) }
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                Log.w("TAG", "Failed to read value.", error.toException())
-            }
-        })
 
-}
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        println("vouci la cleé é" + key)
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
+            binding.imgDownload.setImageURI(data?.data)
+            val photo = storageRef.child(key.toString())
+            data?.data?.let { photo.putFile(it) }
+        }
+
+
+    }
 }
 
 
