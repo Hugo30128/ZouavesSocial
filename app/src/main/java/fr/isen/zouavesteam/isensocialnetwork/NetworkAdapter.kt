@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import javax.crypto.spec.PSource
 
-internal abstract class NetworkAdapter(
+public class NetworkAdapter(
     private var itemsList: ArrayList<Post>,
     val onItemClickListener: (PostPageActivity) -> Unit
 ) :RecyclerView.Adapter<NetworkAdapter.MyViewHolder>() {
@@ -24,9 +24,13 @@ internal abstract class NetworkAdapter(
         return MyViewHolder(itemView)
     }
 
+    override fun getItemCount(): Int {
+        return itemsList.size
+    }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val item = itemsList
-        holder.itemTextView.text = item.toString()
+        val item = itemsList[position]
+        holder.itemTextView.text = item.user
     }
 
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -22,24 +23,32 @@ class PostPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPostPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-       // Firebase.database.getReference("posts").push().setValue(Post("j'ai perdu wlh", "image de moi qui perd", "Jsuis trop nul de ouf", "UID"))
-
+        binding.recyclerPostView.adapter = NetworkAdapter(arrayListOf()){}
+        binding.recyclerPostView.layoutManager = LinearLayoutManager(this)
 
 
 
-       Firebase.database.getReference("posts").addValueEventListener(object :ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.children.map{ it.getValue<Post>() }
-                Log.d("TAG", "Value is: " + value?.first()?.description)
-                findViewById<TextView>(R.id.textView).text=value?.first()?.description
-            }
+      /*  Firebase.database.getReference("posts").push().setValue(
+            Post(
+                "ouie",
+                "je suis le trois",
+                "c'est le troisième",
+                "UID"
+            )
+        )
+    */
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.w("TAG", "Failed to read value.", error.toException())
-            }
-        })
+         Firebase.database.getReference("posts").addValueEventListener(object :ValueEventListener{
+              override fun onDataChange(snapshot: DataSnapshot) {
+                  val value = snapshot.children.map{ it.getValue<Post>() }
+                  Log.d("TAG", "Value is: " + value?.first()?.description)
+                  handleAPIData(value as ArrayList<Post>)
+              }
+
+              override fun onCancelled(error: DatabaseError) {
+                  Log.w("TAG", "Failed to read value.", error.toException())
+              }
+          })
 
 
 /*
@@ -54,9 +63,8 @@ class PostPageActivity : AppCompatActivity() {
         */
     }
 
- /*   private fun handleAPIData(data: Post) {
-        val adapter = binding.recyclerPostView.adapter as NetworkAdapter
-        adapter.refreshList(?.items as ArrayList<Post>)
-    }
-    */
+    private fun handleAPIData(data: ArrayList<Post>) {
+           val adapter = binding.recyclerPostView.adapter as NetworkAdapter
+           adapter.refreshList(data)
+       }
 }
