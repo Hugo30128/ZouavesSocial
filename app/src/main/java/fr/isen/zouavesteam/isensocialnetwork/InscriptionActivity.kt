@@ -20,7 +20,6 @@ class InscriptionActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.title = "Legends of Maximus Inscription"
 
-
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
 
         binding.inscriptionButton.setOnClickListener(){
