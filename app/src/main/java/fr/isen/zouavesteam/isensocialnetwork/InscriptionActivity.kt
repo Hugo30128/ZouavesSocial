@@ -10,17 +10,20 @@ import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityInscriptionBind
 
 class InscriptionActivity : AppCompatActivity() {
     private lateinit var binding:ActivityInscriptionBinding
+    class UserData constructor(var username: String, val pwd: String) {}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_inscription)
-        val actionBar = supportActionBar
-        actionBar?.title = "Legends of Maximus Inscription"
-        class UserData constructor(var username: String, val pwd: String) {}
         val intent= Intent(this,AddPostActivity::class.java)
-        supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
         binding=ActivityInscriptionBinding.inflate(layoutInflater)
         println("Inscription Activity")
-        binding.connexionButton.setOnClickListener {
+        setContentView(binding.root)
+        val actionBar = supportActionBar
+        actionBar?.title = "Legends of Maximus Inscription"
+
+
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
+
+        binding.inscriptionButton.setOnClickListener(){
             println("Clique Bouton")
             val username=binding.userNameText.getText().toString()
             var pwd="random"
@@ -29,6 +32,5 @@ class InscriptionActivity : AppCompatActivity() {
             println("Start New Activity")
             startActivity(intent)
         }
-
     }
 }

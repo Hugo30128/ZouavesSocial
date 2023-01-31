@@ -21,7 +21,7 @@ class AddPostActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddPostBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        println("AddPostActivity")
         binding = ActivityAddPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
         class DataPost constructor(val User: String, val url: String, val Post: String) {}
