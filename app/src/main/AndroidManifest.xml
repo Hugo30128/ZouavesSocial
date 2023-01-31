@@ -15,16 +15,14 @@
             android:name=".platpage"
             android:exported="false" />
         <activity
-            android:name=".AddPostActivity"
-            android:exported="false" />
-        <activity
             android:name=".InscriptionActivity"
             android:exported="false" />
         <activity
             android:name=".UserProfileActivity"
             android:exported="false" />
+
         <activity
-            android:name=".MainActivity"
+            android:name=".AddPostActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
