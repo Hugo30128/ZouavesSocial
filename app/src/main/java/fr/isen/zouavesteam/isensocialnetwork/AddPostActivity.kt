@@ -4,8 +4,6 @@ import android.R
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,7 +11,6 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
@@ -21,11 +18,9 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityAddPostBinding
-import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityPlatpageBinding
-import kotlin.reflect.typeOf
+import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityPostPageBinding
 
 
-@Suppress("DEPRECATION")
 class AddPostActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddPostBinding
     val IMAGE_REQUEST_CODE = 100
@@ -51,7 +46,7 @@ class AddPostActivity : AppCompatActivity() {
             //.push() créer un nouvel identifiant,setValue()
 
             val myRef = database.getReference("POST").child("POST 2")
-            val intent=Intent(this,platpage::class.java)
+            val intent=Intent(this,PostPageActivity::class.java)
             startActivity(intent)
 
 
