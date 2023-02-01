@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.title = "Legends of Maximus"
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
+        actionBar?.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.lolbackground))
         onStart()
         binding.redirectInscription.setOnClickListener {
             val intent = Intent(this, InscriptionActivity::class.java)
@@ -89,7 +91,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun updateUI(user: FirebaseUser?, username: String) {
         if(user!=null){
-            val intent= Intent(this,AddPostActivity::class.java)
+            val intent= Intent(this,PostPageActivity::class.java)
             intent.putExtra("USER",username)
             startActivity(intent)
 
