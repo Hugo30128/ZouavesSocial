@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityPostPageBinding
 import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityUserProfileBinding
 
 
@@ -27,14 +28,15 @@ class UserProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
         binding = ActivityUserProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //test envoie msg
-        etext = findViewById<EditText>(R.id.test)
+        /*etext = findViewById<EditText>(R.id.test)
         BTN = findViewById<Button>(R.id.testbtn)
         dbR =FirebaseDatabase.getInstance().getReference("test")
         BTN.setOnClickListener{
             IData()
-        }
+        }*/
 
         binding.adduserRedirect.setOnClickListener{
             val intent = Intent (this, AddPostActivity::class.java)
@@ -135,7 +137,7 @@ class UserProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun IData(){
+    /*private fun IData(){
         val txt = etext.text.toString()
         if (txt.isEmpty()){
             etext.error = "empty"
@@ -152,5 +154,5 @@ class UserProfileActivity : AppCompatActivity() {
                 }
             id +=1
         }
-    }
+    }*/
 }

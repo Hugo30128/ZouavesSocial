@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#425b8a">
+    android:background="@drawable/fond_infini">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="279dp"
-        android:layout_height="263dp"
+        android:layout_width="277dp"
+        android:layout_height="451dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
