@@ -49,10 +49,12 @@ class AddPostActivity : AppCompatActivity() {
             val description: String = binding.Post.getText().toString()
             val title: String = binding.postTitle.getText().toString()
             var img:String ="gs://isensocialnetwork-zouave.appspot.com/image/"+key.toString()+ ".jpeg"
-            val Post = Post(description, img, title, username,"0","0")
+            val like ="0"
+            val dislike = "0"
+            val Post = Post(description, img, title, username, like,dislike)
             val intent = Intent(this, PostPageActivity::class.java)
             Firebase.database.getReference("posts").push()
-                .setValue(Post(description, img, title, username))
+                .setValue(Post(description, img, title, username, like, dislike))
         }
 
 
