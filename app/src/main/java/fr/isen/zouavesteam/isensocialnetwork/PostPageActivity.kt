@@ -47,6 +47,8 @@ class PostPageActivity : AppCompatActivity() {
          Firebase.database.getReference("posts").addValueEventListener(object :ValueEventListener{
               override fun onDataChange(snapshot: DataSnapshot) {
                   val value = snapshot.children.map{ it.getValue<Post>() }
+                  val ki = snapshot.children.map{it.key}
+                  Log.d("TAG", "key is: " + ki?.first())
                   Log.d("TAG", "Value is: " + value?.first()?.description)
                   handleAPIData(value as ArrayList<Post>)
               }
@@ -56,8 +58,7 @@ class PostPageActivity : AppCompatActivity() {
               }
           })
 
-
-/*
+    /*
         findViewById<Button>(R.id.mainAction).setOnClickListener {
             // Write a message to the database
             val database = Firebase.database

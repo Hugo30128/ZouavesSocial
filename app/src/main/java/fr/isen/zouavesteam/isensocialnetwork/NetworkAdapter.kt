@@ -6,15 +6,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import javax.crypto.spec.PSource
+import com.squareup.picasso.Picasso
 
 public class NetworkAdapter(
     private var itemsList: ArrayList<Post>,
     val onItemClickListener: (PostPageActivity) -> Unit
-) :RecyclerView.Adapter<NetworkAdapter.MyViewHolder>() {
+) : RecyclerView.Adapter<NetworkAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var itemTextView: TextView = view.findViewById(R.id.TITLE)
+        var item2TextView: TextView = view.findViewById(R.id.description)
+        var item3ImageView: ImageView = view.findViewById(R.id.imageView)
 
     }
 
@@ -30,7 +32,9 @@ public class NetworkAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = itemsList[position]
-        holder.itemTextView.text = item.user
+        holder.itemTextView.text = item.title
+        holder.item2TextView.text = item.description
+        Picasso.get().load(item.img).into(holder.item3ImageView);
     }
 
 
