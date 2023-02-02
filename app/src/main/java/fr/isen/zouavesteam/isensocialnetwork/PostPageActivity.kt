@@ -1,5 +1,6 @@
 package fr.isen.zouavesteam.isensocialnetwork
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +28,10 @@ class PostPageActivity : AppCompatActivity() {
         binding.recyclerPostView.layoutManager = LinearLayoutManager(this)
 
 
-
+        binding.addpostRedirect.setOnClickListener{
+            val intent = Intent(this, AddPostActivity::class.java)
+            startActivity(intent)
+        }
       /*  Firebase.database.getReference("posts").push().setValue(
             Post(
                 "ouie",
