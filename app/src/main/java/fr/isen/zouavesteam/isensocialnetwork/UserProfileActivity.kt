@@ -1,5 +1,6 @@
 package fr.isen.zouavesteam.isensocialnetwork
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -13,15 +14,19 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityUserProfileBinding
+
 
 class UserProfileActivity : AppCompatActivity() {
     private lateinit var etext:EditText
     private lateinit var BTN:Button
     private lateinit var dbR:DatabaseReference
+    private lateinit var binding: ActivityUserProfileBinding
     private var id=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
+        binding = ActivityUserProfileBinding.inflate(layoutInflater)
 
         //test envoie msg
         etext = findViewById<EditText>(R.id.test)
@@ -31,9 +36,23 @@ class UserProfileActivity : AppCompatActivity() {
             IData()
         }
 
+        binding.adduserRedirect.setOnClickListener{
+            val intent = Intent (this, AddPostActivity::class.java)
+            startActivity(intent)
+        }
 
-        val actionBar = supportActionBar
-        actionBar!!.title = "Maximus"
+        binding.homeuser.setOnClickListener{
+            val intent = Intent (this, PostPageActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.personnage2.setOnClickListener{
+            Toast.makeText(applicationContext, "Vous êtes déja sur cette page", Toast.LENGTH_SHORT).show();
+        }
+
+
+        //val actionBar = supportActionBar
+        //actionBar!!.title = "Maximus"
 
         val button = findViewById<Button>(R.id.age)
         val textView = findViewById<TextView>(R.id.Age2)

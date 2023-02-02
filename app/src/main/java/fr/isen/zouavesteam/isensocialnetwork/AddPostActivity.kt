@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -40,7 +41,7 @@ class AddPostActivity : AppCompatActivity() {
         println("AddPostActivity")
         binding = ActivityAddPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
+        //supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
         val username = intent.getStringExtra("USER") ?: ""
         println("\n\n\nInfo : "+username+"\n\n\n")
 
@@ -57,6 +58,20 @@ class AddPostActivity : AppCompatActivity() {
                 .setValue(Post(description, img, title, username, like, dislike))
         }
 
+        binding.homeadd.setOnClickListener{
+            // ButtonAddPostActivity(username)
+            val intent = Intent (this, PostPageActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.personnageadd.setOnClickListener{
+            val intent = Intent (this, UserProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.addpostRedirect2.setOnClickListener{
+            Toast.makeText(applicationContext, "Vous êtes déja sur cette page", Toast.LENGTH_SHORT).show();
+        }
 
         binding.imgDownload.setOnClickListener {
             pickImageGallery()
@@ -82,6 +97,7 @@ class AddPostActivity : AppCompatActivity() {
 
 
     }
+
 }
 
 

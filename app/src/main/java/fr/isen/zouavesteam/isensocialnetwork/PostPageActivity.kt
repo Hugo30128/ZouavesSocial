@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -34,7 +35,7 @@ class PostPageActivity : AppCompatActivity() {
         intent.putExtra("USER",username)
 
         binding.addpostRedirect.setOnClickListener{
-           // ButtonAddPostActivity(username)
+            // ButtonAddPostActivity(username)
             val intent = Intent (this, AddPostActivity::class.java)
             startActivity(intent)
         }
@@ -42,6 +43,10 @@ class PostPageActivity : AppCompatActivity() {
         binding.personnage.setOnClickListener{
             val intent = Intent (this, UserProfileActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.home.setOnClickListener{
+            Toast.makeText(applicationContext, "Vous êtes déja sur cette page", Toast.LENGTH_SHORT).show();
         }
       /*  Firebase.database.getReference("posts").push().setValue(
             Post(
