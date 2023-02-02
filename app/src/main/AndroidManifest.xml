@@ -16,6 +16,7 @@
             android:exported="false" />
         <activity
             android:name=".PostPageActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".InscriptionActivity"

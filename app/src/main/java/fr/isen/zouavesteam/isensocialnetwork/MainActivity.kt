@@ -37,10 +37,10 @@ class MainActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
         // [END initialize_auth]
-        val actionBar = supportActionBar
+        /*val actionBar = supportActionBar
         actionBar?.title = "Legends of Maximus"
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
-        actionBar?.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.lolbackground))
+        actionBar?.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.lolbackground))*/
         onStart()
         binding.redirectInscription.setOnClickListener {
             val intent = Intent(this, InscriptionActivity::class.java)

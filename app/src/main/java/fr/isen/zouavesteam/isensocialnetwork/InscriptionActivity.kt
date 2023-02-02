@@ -30,11 +30,11 @@ class InscriptionActivity : AppCompatActivity() {
         auth = Firebase.auth
         // [END initialize_auth]
 
-        val actionBar = supportActionBar
-        actionBar?.title = "Legends of Maximus Inscription"
+        //val actionBar = supportActionBar
+        //actionBar?.title = "Legends of Maximus Inscription"
 
 
-        supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
+        //supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
 
         onStart()
 

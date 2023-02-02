@@ -32,8 +32,16 @@ class PostPageActivity : AppCompatActivity() {
         intent=Intent(this,AddPostActivity::class.java)
         println("\n\n\nInfo POST PAGE : "+username+"\n\n\n")
         intent.putExtra("USER",username)
+
         binding.addpostRedirect.setOnClickListener{
-            ButtonAddPostActivity(username)
+           // ButtonAddPostActivity(username)
+            val intent = Intent (this, AddPostActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.personnage.setOnClickListener{
+            val intent = Intent (this, UserProfileActivity::class.java)
+            startActivity(intent)
         }
       /*  Firebase.database.getReference("posts").push().setValue(
             Post(
