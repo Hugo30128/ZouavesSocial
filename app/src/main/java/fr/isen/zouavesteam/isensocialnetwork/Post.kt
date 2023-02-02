@@ -8,5 +8,7 @@ data class Post(
     var description: String? = null,
     var img: String? = null,
     var title: String? = null,
-    var user: String? = null
+    var user: String? = null,
+    var like: String? = null,
+    var dislike: String? = null
 )
