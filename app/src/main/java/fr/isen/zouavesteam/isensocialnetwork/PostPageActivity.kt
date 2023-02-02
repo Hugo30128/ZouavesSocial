@@ -26,13 +26,14 @@ class PostPageActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.recyclerPostView.adapter = NetworkAdapter(arrayListOf()){}
         binding.recyclerPostView.layoutManager = LinearLayoutManager(this)
-        intent=Intent(this,AddPostActivity::class.java)
         val username = intent.getStringExtra("USER") ?: ""
-        println("\n\n\n"+username+"\n\n\n")
+
+
+        intent=Intent(this,AddPostActivity::class.java)
+        println("\n\n\nInfo POST PAGE : "+username+"\n\n\n")
         intent.putExtra("USER",username)
         binding.addpostRedirect.setOnClickListener{
-            val intent = Intent(this, AddPostActivity::class.java)
-            startActivity(intent)
+            ButtonAddPostActivity(username)
         }
       /*  Firebase.database.getReference("posts").push().setValue(
             Post(
@@ -71,7 +72,7 @@ class PostPageActivity : AppCompatActivity() {
     }
     private fun ButtonAddPostActivity(User:String){
         intent= Intent(this,AddPostActivity::class.java)
-        intent.putExtra("User",User)
+        intent.putExtra("USER",User)
         startActivity(intent)
 
     }

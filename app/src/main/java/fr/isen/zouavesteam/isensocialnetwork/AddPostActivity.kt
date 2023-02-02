@@ -41,9 +41,11 @@ class AddPostActivity : AppCompatActivity() {
         binding = ActivityAddPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
+        val username = intent.getStringExtra("USER") ?: ""
+        println("\n\n\nInfo : "+username+"\n\n\n")
 
         binding.Download.setOnClickListener {
-            val username = intent.getStringExtra("USER") ?: ""
+
             val description: String = binding.Post.getText().toString()
             val title: String = binding.postTitle.getText().toString()
             var img:String ="gs://isensocialnetwork-zouave.appspot.com/image/"+key.toString()+ ".jpeg"
