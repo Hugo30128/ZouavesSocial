@@ -45,9 +45,9 @@ class AddPostActivity : AppCompatActivity() {
         binding.Download.setOnClickListener {
             val username = intent.getStringExtra("USER") ?: ""
             val description: String = binding.Post.getText().toString()
-            val title: String = binding.Post.getText().toString()
-            var img = binding.URL.getText().toString()
-            val Post = Post(description, img, title, username)
+            val title: String = binding.postTitle.getText().toString()
+            var img:String ="gs://isensocialnetwork-zouave.appspot.com/image/"+key.toString()+ ".jpeg"
+            val Post = Post(description, img, title, username,"0","0")
             val intent = Intent(this, PostPageActivity::class.java)
             Firebase.database.getReference("posts").push()
                 .setValue(Post(description, img, title, username))
@@ -59,6 +59,7 @@ class AddPostActivity : AppCompatActivity() {
 
         }
     }
+
 
     private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)

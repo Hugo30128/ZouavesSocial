@@ -26,8 +26,10 @@ class PostPageActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.recyclerPostView.adapter = NetworkAdapter(arrayListOf()){}
         binding.recyclerPostView.layoutManager = LinearLayoutManager(this)
-
-
+        intent=Intent(this,AddPostActivity::class.java)
+        val username = intent.getStringExtra("USER") ?: ""
+        println("\n\n\n"+username+"\n\n\n")
+        intent.putExtra("USER",username)
         binding.addpostRedirect.setOnClickListener{
             val intent = Intent(this, AddPostActivity::class.java)
             startActivity(intent)
@@ -65,6 +67,12 @@ class PostPageActivity : AppCompatActivity() {
 
 
         */
+    }
+    private fun ButtonAddPostActivity(User:String){
+        intent= Intent(this,AddPostActivity::class.java)
+        intent.putExtra("User",User)
+        startActivity(intent)
+
     }
 
     private fun handleAPIData(data: ArrayList<Post>) {

@@ -7,35 +7,36 @@
     tools:context=".AddPostActivity">
 
     <EditText
-        android:id="@+id/URL"
+        android:id="@+id/postTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
+        android:hint="Post information"
         android:inputType="textPersonName"
-        android:hint="Mettre un URL pour votre Image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgDownload" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/Post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="354dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Post information"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Titre" />
+        app:layout_constraintTop_toBottomOf="@+id/postTitle" />
 
     <ImageView
         android:id="@+id/imgDownload"
-        android:layout_width="196dp"
-        android:layout_height="133dp"
-        android:layout_marginTop="41dp"
+        android:layout_width="347dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="72dp"
         android:background="#FF0000"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,18 +52,9 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgDownload" />
-
-    <TextView
-        android:id="@+id/Titre"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="36dp"
-        android:text="Poster "
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgDownload"
+        app:layout_constraintVertical_bias="0.488" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
