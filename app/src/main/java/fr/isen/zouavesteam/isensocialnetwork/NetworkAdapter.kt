@@ -26,6 +26,10 @@ public class NetworkAdapter(
         var itemTextView: TextView = view.findViewById(R.id.TITLE)
         var item2TextView: TextView = view.findViewById(R.id.description)
         var item3ImageView: ImageView = view.findViewById(R.id.imageView)
+        var butonlike: ImageView = view.findViewById(R.id.like)
+        var butondislike : ImageView = view.findViewById(R.id.dislike)
+        var textlike :  TextView = view.findViewById(R.id.LikeView)
+        var textdislike :  TextView = view.findViewById(R.id.dislikeView)
 
     }
 
@@ -34,6 +38,7 @@ public class NetworkAdapter(
             .inflate(R.layout.item, parent, false)
         return MyViewHolder(itemView)
     }
+
 
     override fun getItemCount(): Int {
         return itemsList.size
@@ -52,6 +57,18 @@ public class NetworkAdapter(
             println("Image à afficher" + uri + "\n\n\n")
             // L'URL de téléchargement de l'image est disponible ici
             Picasso.get().load(uri).into(holder.item3ImageView)
+        }
+
+        holder.butonlike.setOnClickListener {
+            val currentValue = holder.textlike.text.toString().toInt()
+            val newValue = currentValue + 1
+            holder.textlike.text = newValue.toString()
+        }
+
+        holder.butondislike.setOnClickListener {
+            val currentValue = holder.textdislike.text.toString().toInt()
+            val newValue = currentValue + 1
+            holder.textdislike.text = newValue.toString()
         }
     }
 
