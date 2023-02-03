@@ -30,6 +30,11 @@ class PostDetailActivity : AppCompatActivity() {
             val intent = Intent (this, PostPageActivity::class.java)
             startActivity(intent)
         }
+
+        binding.personnagedetail.setOnClickListener{
+            val intent = Intent (this, UserProfileActivity::class.java)
+            startActivity(intent)
+        }
         val layoutManager = LinearLayoutManager(applicationContext)
         binding.detailCommentaire.layoutManager = layoutManager
         binding.detailCommentaire.adapter = CommentAdapter(post.comments) {
