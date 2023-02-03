@@ -196,7 +196,6 @@
         android:id="@+id/main2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:shadowColor="@color/white"
         android:shadowRadius="20"
         android:text="Daruis"
@@ -205,7 +204,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/main"
-        app:layout_constraintTop_toBottomOf="@+id/Age2" />
+        tools:layout_editor_absoluteY="406dp" />
 
     <Button
         android:id="@+id/coeur"
@@ -304,10 +303,10 @@
 
     <Button
         android:id="@+id/reloadInfo"
-        android:layout_width="87dp"
+        android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="28dp"
-        android:text="Button"
+        android:background="@drawable/update"
         app:layout_constraintStart_toEndOf="@+id/Nom2"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
