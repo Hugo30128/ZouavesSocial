@@ -86,7 +86,7 @@ class InscriptionActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?, username: String) {
         if(user!=null){
-            val intent= Intent(this,AddPostActivity::class.java)
+            val intent= Intent(this,PostPageActivity::class.java)
             intent.putExtra("USER",username)
             startActivity(intent)
         }
