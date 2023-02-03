@@ -49,6 +49,7 @@ class PostPageActivity : AppCompatActivity() {
         binding.home.setOnClickListener{
             Toast.makeText(applicationContext, "Vous êtes déja sur cette page", Toast.LENGTH_SHORT).show();
         }
+
       /*  Firebase.database.getReference("posts").push().setValue(
             Post(
                 "ouie",
@@ -84,6 +85,8 @@ class PostPageActivity : AppCompatActivity() {
 
         */
     }
+
+
     private fun ButtonAddPostActivity(User:String){
         intent= Intent(this,AddPostActivity::class.java)
         intent.putExtra("USER",User)
