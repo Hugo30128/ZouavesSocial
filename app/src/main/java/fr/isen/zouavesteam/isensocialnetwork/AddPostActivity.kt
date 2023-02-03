@@ -49,7 +49,7 @@ class AddPostActivity : AppCompatActivity() {
 
             val description: String = binding.Post.getText().toString()
             val title: String = binding.postTitle.getText().toString()
-            var img:String ="gs://isensocialnetwork-zouave.appspot.com/image/"+key.toString()+ ".jpeg"
+            var img:String ="gs://isensocialnetwork-zouave.appspot.com/image/"+key.toString()
             val like ="0"
             val dislike = "0"
             val Post = Post(description, img, title, username, like,dislike)
@@ -91,7 +91,7 @@ class AddPostActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
             binding.imgDownload.setImageURI(data?.data)
-            val photo = storageRef.child(key.toString())
+            val photo = storageRef.child(key.toString()+ ".jpeg")
             data?.data?.let { photo.putFile(it) }
         }
 

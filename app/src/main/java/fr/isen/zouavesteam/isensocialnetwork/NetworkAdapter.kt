@@ -1,15 +1,25 @@
 package fr.isen.zouavesteam.isensocialnetwork
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
+
 
 public class NetworkAdapter(
     private var itemsList: ArrayList<Post>,
+    val storageRef: StorageReference = Firebase.storage.reference,
+
+
+
     val onItemClickListener: (PostPageActivity) -> Unit
 ) : RecyclerView.Adapter<NetworkAdapter.MyViewHolder>() {
 
@@ -34,9 +44,18 @@ public class NetworkAdapter(
         val item = itemsList[position]
         holder.itemTextView.text = item.title
         holder.item2TextView.text = item.description
-        Picasso.get().load(item.img).into(holder.item3ImageView);
-    }
+        val ref = item.img?.let { storageRef.child(it) }
+        Log.d("TAG", "ref is: $ref")
+        if (ref != null) {
+            ref.downloadUrl.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
+                } else {
+                }
+            }
+        }
 
+    }
 
     fun refreshList(dataToExtract: ArrayList<Post>) {
         itemsList = dataToExtract

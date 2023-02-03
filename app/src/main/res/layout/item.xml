@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="277dp"
-        android:layout_height="451dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="200dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
@@ -46,7 +46,7 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="32dp"
 
         android:layout_marginTop="15dp"
         android:ems="10"
@@ -57,22 +57,24 @@
 
     <Button
         android:id="@+id/partage"
-        android:layout_width="50dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="25dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
 
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/partage"
         android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/like" />
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName" />
 
     <Button
         android:id="@+id/like"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/like"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
@@ -83,9 +85,9 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
         android:background="@drawable/dislike"
+        app:layout_constraintBottom_toBottomOf="@+id/like"
         app:layout_constraintStart_toEndOf="@+id/like"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/like" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
