@@ -48,13 +48,14 @@ class AddPostActivity : AppCompatActivity() {
         binding.Download.setOnClickListener {
             val description: String = binding.Post.getText().toString()
             val title: String = binding.postTitle.getText().toString()
-            var img:String ="gs://isensocialnetwork-zouave.appspot.com/image/"+key.toString()
+            var img:String = key.toString()
             val like ="0"
             val dislike = "0"
             val Post = Post(description, img, title, username, like,dislike)
             val intent = Intent(this, PostPageActivity::class.java)
             Firebase.database.getReference("posts").push()
                 .setValue(Post(description, img, title, username, like, dislike))
+            startActivity(intent)
         }
 
         binding.homeadd.setOnClickListener{
@@ -76,6 +77,7 @@ class AddPostActivity : AppCompatActivity() {
             pickImageGallery()
 
         }
+
     }
 
 
@@ -90,7 +92,7 @@ class AddPostActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
             binding.imgDownload.setImageURI(data?.data)
-            val photo = storageRef.child(key.toString()+ ".jpeg")
+            val photo = storageRef.child(key.toString())
             data?.data?.let { photo.putFile(it) }
         }
 

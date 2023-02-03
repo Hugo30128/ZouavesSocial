@@ -16,17 +16,20 @@ import com.squareup.picasso.Picasso
 
 public class NetworkAdapter(
     private var itemsList: ArrayList<Post>,
-    val storageRef: StorageReference = Firebase.storage.reference,
-
 
 
     val onItemClickListener: (PostPageActivity) -> Unit
 ) : RecyclerView.Adapter<NetworkAdapter.MyViewHolder>() {
 
+
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var itemTextView: TextView = view.findViewById(R.id.TITLE)
         var item2TextView: TextView = view.findViewById(R.id.description)
         var item3ImageView: ImageView = view.findViewById(R.id.imageView)
+        var butonlike: ImageView = view.findViewById(R.id.like)
+        var butondislike : ImageView = view.findViewById(R.id.dislike)
+        var textlike :  TextView = view.findViewById(R.id.LikeView)
+        var textdislike :  TextView = view.findViewById(R.id.dislikeView)
 
     }
 
@@ -36,25 +39,37 @@ public class NetworkAdapter(
         return MyViewHolder(itemView)
     }
 
+
     override fun getItemCount(): Int {
         return itemsList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = itemsList[position]
+        var storage = FirebaseStorage.getInstance()
+        var storageReference = storage.reference.child("image/" + item.img)
+
         holder.itemTextView.text = item.title
         holder.item2TextView.text = item.description
-        val ref = item.img?.let { storageRef.child(it) }
-        Log.d("TAG", "ref is: $ref")
-        if (ref != null) {
-            ref.downloadUrl.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val downloadUri = task.result
-                } else {
-                }
-            }
+
+        println("LA REFRENCE" + storageReference)
+        storageReference.downloadUrl.addOnSuccessListener { uri ->
+            println("Image à afficher" + uri + "\n\n\n")
+            // L'URL de téléchargement de l'image est disponible ici
+            Picasso.get().load(uri).into(holder.item3ImageView)
         }
 
+        holder.butonlike.setOnClickListener {
+            val currentValue = holder.textlike.text.toString().toInt()
+            val newValue = currentValue + 1
+            holder.textlike.text = newValue.toString()
+        }
+
+        holder.butondislike.setOnClickListener {
+            val currentValue = holder.textdislike.text.toString().toInt()
+            val newValue = currentValue + 1
+            holder.textdislike.text = newValue.toString()
+        }
     }
 
     fun refreshList(dataToExtract: ArrayList<Post>) {
@@ -63,4 +78,5 @@ public class NetworkAdapter(
     }
 
 }
+
 
