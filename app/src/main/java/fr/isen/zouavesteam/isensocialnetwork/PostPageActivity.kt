@@ -19,8 +19,6 @@ import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityPostPageBinding
 
 class PostPageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPostPageBinding
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -43,23 +41,15 @@ class PostPageActivity : AppCompatActivity() {
 
         binding.personnage.setOnClickListener{
             val intent = Intent (this, UserProfileActivity::class.java)
+            intent.putExtra("USER",username)
             startActivity(intent)
         }
 
         binding.home.setOnClickListener{
             Toast.makeText(applicationContext, "Vous êtes déja sur cette page", Toast.LENGTH_SHORT).show();
         }
-      /*  Firebase.database.getReference("posts").push().setValue(
-            Post(
-                "ouie",
-                "je suis le trois",
-                "c'est le troisième",
-                "UID"
-            )
-        )
-    */
 
-         Firebase.database.getReference("posts").addValueEventListener(object :ValueEventListener{
+           Firebase.database.getReference("posts").addValueEventListener(object :ValueEventListener{
               override fun onDataChange(snapshot: DataSnapshot) {
                   val value = snapshot.children.map{ it.getValue<Post>() }
                   val ki = snapshot.children.map{it.key}
@@ -73,16 +63,7 @@ class PostPageActivity : AppCompatActivity() {
               }
           })
 
-    /*
-        findViewById<Button>(R.id.mainAction).setOnClickListener {
-            // Write a message to the database
-            val database = Firebase.database
-            val myRef = database.getReference("message")
-            myRef.setValue("Hello, World!")
-        }
 
-
-        */
     }
     private fun ButtonAddPostActivity(User:String){
         intent= Intent(this,AddPostActivity::class.java)
@@ -90,7 +71,6 @@ class PostPageActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
-
     private fun handleAPIData(data: ArrayList<Post>) {
            val adapter = binding.recyclerPostView.adapter as NetworkAdapter
            adapter.refreshList(data)

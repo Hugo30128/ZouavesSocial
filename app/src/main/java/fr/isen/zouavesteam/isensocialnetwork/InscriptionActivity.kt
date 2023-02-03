@@ -89,8 +89,6 @@ class InscriptionActivity : AppCompatActivity() {
             val intent= Intent(this,AddPostActivity::class.java)
             intent.putExtra("USER",username)
             startActivity(intent)
-
-
         }
     }
 

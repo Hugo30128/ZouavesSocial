@@ -166,8 +166,8 @@
 
     <TextView
         android:id="@+id/Age2"
-        android:layout_width="51dp"
-        android:layout_height="32dp"
+        android:layout_width="45dp"
+        android:layout_height="26dp"
         android:layout_marginTop="100dp"
         android:shadowColor="@color/white"
         android:shadowRadius="20"
@@ -301,5 +301,14 @@
         app:layout_constraintHorizontal_bias="0.653"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pseudo" />
+
+    <Button
+        android:id="@+id/reloadInfo"
+        android:layout_width="87dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:text="Button"
+        app:layout_constraintStart_toEndOf="@+id/Nom2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

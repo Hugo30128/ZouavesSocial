@@ -46,7 +46,6 @@ class AddPostActivity : AppCompatActivity() {
         println("\n\n\nInfo : "+username+"\n\n\n")
 
         binding.Download.setOnClickListener {
-
             val description: String = binding.Post.getText().toString()
             val title: String = binding.postTitle.getText().toString()
             var img:String ="gs://isensocialnetwork-zouave.appspot.com/image/"+key.toString()

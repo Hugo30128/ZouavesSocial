@@ -10,149 +10,86 @@ import androidx.appcompat.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
+import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
 import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityPostPageBinding
 import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityUserProfileBinding
 
 
 class UserProfileActivity : AppCompatActivity() {
-    private lateinit var etext:EditText
-    private lateinit var BTN:Button
-    private lateinit var dbR:DatabaseReference
+    private lateinit var etext: EditText
+    private lateinit var BTN: Button
+    private lateinit var dbR: DatabaseReference
     private lateinit var binding: ActivityUserProfileBinding
-    private var id=0
+    private var id = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
         binding = ActivityUserProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val email = intent.getStringExtra("USER") ?: ""
+        Firebase.database.getReference("profiles").addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val value = snapshot.children.map { it.getValue<Profile>() }
+                val key = snapshot.children.map { it.key }
+                var flag = 0
+                println("KEY :" + key.toString())
+                for (eachPost in value) {
+                    if (email == eachPost?.email) {
+                        println("USER : " + eachPost?.username)
+                        binding.Nom2.text = eachPost?.username
+                        binding.Age2.text = eachPost?.tempsDeJeu
+                        binding.Description2.text = eachPost?.description2
+                        binding.contact2.text = eachPost?.contact
+                        binding.main2.text = eachPost?.main
+                        binding.type2.text = eachPost?.type
+                        flag = 1
+                        break
+                    } else {
+                        println("Not HIM")
+                    }
+                }
+                if (flag != 1) {
+                    Firebase.database.getReference("profiles").push()
+                        .setValue(Profile(email, "null", "null", "null", "null", "null", "null"))
+                }
+            }
 
-        //test envoie msg
-        /*etext = findViewById<EditText>(R.id.test)
-        BTN = findViewById<Button>(R.id.testbtn)
-        dbR =FirebaseDatabase.getInstance().getReference("test")
-        BTN.setOnClickListener{
-            IData()
-        }*/
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("TAG", "Failed to read value.", error.toException())
+            }
+        })
 
-        binding.adduserRedirect.setOnClickListener{
-            val intent = Intent (this, AddPostActivity::class.java)
+
+
+
+
+        binding.reloadInfo.setOnClickListener {
+            val intent = Intent(this, ChangeProfilActivity::class.java)
+            intent.putExtra("email", email)
             startActivity(intent)
         }
 
-        binding.homeuser.setOnClickListener{
-            val intent = Intent (this, PostPageActivity::class.java)
+        binding.adduserRedirect.setOnClickListener {
+            val intent = Intent(this, AddPostActivity::class.java)
             startActivity(intent)
         }
 
-        binding.personnage2.setOnClickListener{
-            Toast.makeText(applicationContext, "Vous êtes déja sur cette page", Toast.LENGTH_SHORT).show();
+        binding.homeuser.setOnClickListener {
+            val intent = Intent(this, PostPageActivity::class.java)
+            startActivity(intent)
         }
 
-
-        //val actionBar = supportActionBar
-        //actionBar!!.title = "Maximus"
-
-        val button = findViewById<Button>(R.id.age)
-        val textView = findViewById<TextView>(R.id.Age2)
-
-        button.setOnClickListener {
-            val input = EditText(this)
-            val dialog = AlertDialog.Builder(this)
-                .setTitle("Modifier le temps de jeu :")
-                .setView(input)
-                .setPositiveButton("OK") { _, _ ->
-                    textView.text = input.text
-                }
-                .setNegativeButton("Annuler") { _, _ -> }
-                .create()
-            dialog.show()
+        binding.personnage2.setOnClickListener {
+            Toast.makeText(applicationContext, "Vous êtes déja sur cette page", Toast.LENGTH_SHORT)
+                .show();
         }
 
-        val button2 = findViewById<Button>(R.id.coeur)
-        val textView2 = findViewById<TextView>(R.id.main2)
-
-        button2.setOnClickListener {
-            val input = EditText(this)
-            val dialog = AlertDialog.Builder(this)
-                .setTitle("Modifier le champion principal :")
-                .setView(input)
-                .setPositiveButton("OK") { _, _ ->
-                    textView2.text = input.text
-                }
-                .setNegativeButton("Annuler") { _, _ -> }
-                .create()
-            dialog.show()
-        }
-
-        val button3 = findViewById<Button>(R.id.typeplayer)
-        val textView3 = findViewById<TextView>(R.id.type2)
-
-        button3.setOnClickListener {
-            val input = EditText(this)
-            val dialog = AlertDialog.Builder(this)
-                .setTitle("Modifier le type de joueur :")
-                .setView(input)
-                .setPositiveButton("OK") { _, _ ->
-                    textView3.text = input.text
-                }
-                .setNegativeButton("Annuler") { _, _ -> }
-                .create()
-            dialog.show()
-        }
-
-        val button4 = findViewById<Button>(R.id.pseudo)
-        val textView4 = findViewById<TextView>(R.id.contact2)
-
-        button4.setOnClickListener {
-            val input = EditText(this)
-            val dialog = AlertDialog.Builder(this)
-                .setTitle("Modifier le pseudo de jeu :")
-                .setView(input)
-                .setPositiveButton("OK") { _, _ ->
-                    textView4.text = input.text
-                }
-                .setNegativeButton("Annuler") { _, _ -> }
-                .create()
-            dialog.show()
-        }
-
-       val button5 = findViewById<Button>(R.id.livre)
-        val textView5 = findViewById<TextView>(R.id.Description2)
-
-        button5.setOnClickListener {
-            val input = EditText(this)
-            val dialog = AlertDialog.Builder(this)
-                .setTitle("Modifier la description :")
-                .setView(input)
-                .setPositiveButton("OK") { _, _ ->
-                    textView5.text = input.text
-                }
-                .setNegativeButton("Annuler") { _, _ -> }
-                .create()
-            dialog.show()
-        }
     }
-
-    /*private fun IData(){
-        val txt = etext.text.toString()
-        if (txt.isEmpty()){
-            etext.error = "empty"
-        }
-        else{
-            dbR.child(id.toString()).setValue(txt)
-                .addOnCompleteListener{
-                    Toast.makeText(this,"insert",Toast.LENGTH_SHORT).show()
-                    etext.text.clear()
-                }
-                .addOnFailureListener{
-                        err ->
-                    Toast.makeText(this,"Fail",Toast.LENGTH_SHORT).show()
-                }
-            id +=1
-        }
-    }*/
 }
