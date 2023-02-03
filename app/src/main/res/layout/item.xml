@@ -49,8 +49,8 @@
 
         android:layout_marginTop="84dp"
         android:ems="10"
+        android:hint="Commentaire"
         android:inputType="textPersonName"
-        android:text="Commentaire"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
