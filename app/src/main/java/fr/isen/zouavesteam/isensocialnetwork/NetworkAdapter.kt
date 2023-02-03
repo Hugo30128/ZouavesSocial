@@ -51,6 +51,8 @@ public class NetworkAdapter(
         val item = itemsList[position]
         holder.title.text = item.title
         holder.description.text = item.description
+        holder.textlike.text = item.like
+        holder.textdislike.text = item.dislike
         holder.partage.setOnClickListener{
             item.comments.add(holder.comment.text.toString())
             Firebase.database.getReference("posts/${item.id}/comments").setValue(
@@ -77,12 +79,18 @@ public class NetworkAdapter(
             val currentValue = holder.textlike.text.toString().toInt()
             val newValue = currentValue + 1
             holder.textlike.text = newValue.toString()
+            Firebase.database.getReference("posts/${item.id}/like").setValue(
+                newValue.toString()
+            )
         }
 
         holder.butondislike.setOnClickListener {
             val currentValue = holder.textdislike.text.toString().toInt()
             val newValue = currentValue + 1
             holder.textdislike.text = newValue.toString()
+            Firebase.database.getReference("posts/${item.id}/dislike").setValue(
+                newValue.toString()
+            )
         }
     }
 
