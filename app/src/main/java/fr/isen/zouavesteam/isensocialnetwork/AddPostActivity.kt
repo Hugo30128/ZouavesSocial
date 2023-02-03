@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.ArrayMap
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -46,15 +47,17 @@ class AddPostActivity : AppCompatActivity() {
         println("\n\n\nInfo : "+username+"\n\n\n")
 
         binding.Download.setOnClickListener {
+            val id: String = ""
             val description: String = binding.Post.getText().toString()
             val title: String = binding.postTitle.getText().toString()
             var img:String = key.toString()
             val like ="0"
             val dislike = "0"
-            val Post = Post(description, img, title, username, like,dislike)
+            val comments = arrayListOf<String>()
+            val Post = Post(id,description, img, title, username, like,dislike,comments)
             val intent = Intent(this, PostPageActivity::class.java)
             Firebase.database.getReference("posts").push()
-                .setValue(Post(description, img, title, username, like, dislike))
+                .setValue(Post(id,description, img, title, username, like, dislike,comments))
             startActivity(intent)
         }
 
