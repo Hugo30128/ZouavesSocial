@@ -2,28 +2,14 @@ package fr.isen.zouavesteam.isensocialnetwork
 
 import android.R
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Bundle
-import android.util.ArrayMap
-import android.util.Log
-import android.view.View
 import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.squareup.picasso.Picasso
 import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityAddPostBinding
-import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityPostPageBinding
 import kotlin.random.Random
 
 
@@ -34,8 +20,8 @@ class AddPostActivity : AppCompatActivity() {
     val database = Firebase.database
     val storage = Firebase.storage.reference
     val storageRef = storage.child("/image")
-    val key = Random.nextInt(0,100)
-    lateinit var img : EditText
+    val key = Random.nextInt(0, 100)
+    lateinit var img: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,36 +30,37 @@ class AddPostActivity : AppCompatActivity() {
         setContentView(binding.root)
         //supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#425B8A")))
         val username = intent.getStringExtra("USER") ?: ""
-        println("\n\n\nInfo : "+username+"\n\n\n")
+        println("\n\n\nInfo : " + username + "\n\n\n")
 
         binding.Download.setOnClickListener {
             val id: String = ""
             val description: String = binding.Post.getText().toString()
             val title: String = binding.postTitle.getText().toString()
-            var img:String = key.toString()
-            val like ="0"
+            var img: String = key.toString()
+            val like = "0"
             val dislike = "0"
             val comments = arrayListOf<String>()
-            val Post = Post(id,description, img, title, username, like,dislike,comments)
+            val Post = Post(id, description, img, title, username, like, dislike, comments)
             val intent = Intent(this, PostPageActivity::class.java)
             Firebase.database.getReference("posts").push()
-                .setValue(Post(id,description, img, title, username, like, dislike,comments))
+                .setValue(Post(id, description, img, title, username, like, dislike, comments))
             startActivity(intent)
         }
 
-        binding.homeadd.setOnClickListener{
+        binding.homeadd.setOnClickListener {
             // ButtonAddPostActivity(username)
-            val intent = Intent (this, PostPageActivity::class.java)
+            val intent = Intent(this, PostPageActivity::class.java)
             startActivity(intent)
         }
 
-        binding.personnageadd.setOnClickListener{
-            val intent = Intent (this, UserProfileActivity::class.java)
+        binding.personnageadd.setOnClickListener {
+            val intent = Intent(this, UserProfileActivity::class.java)
             startActivity(intent)
         }
 
-        binding.addpostRedirect2.setOnClickListener{
-            Toast.makeText(applicationContext, "Vous êtes déja sur cette page", Toast.LENGTH_SHORT).show();
+        binding.addpostRedirect2.setOnClickListener {
+            Toast.makeText(applicationContext, "Vous êtes déja sur cette page", Toast.LENGTH_SHORT)
+                .show();
         }
 
         binding.imgDownload.setOnClickListener {

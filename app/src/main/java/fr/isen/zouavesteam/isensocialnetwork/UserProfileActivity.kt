@@ -5,21 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import android.graphics.Color
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.OvalShape
 import android.util.Log
-import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityPostPageBinding
 import fr.isen.zouavesteam.isensocialnetwork.databinding.ActivityUserProfileBinding
-
 
 class UserProfileActivity : AppCompatActivity() {
     private lateinit var etext: EditText
@@ -65,11 +57,6 @@ class UserProfileActivity : AppCompatActivity() {
                 Log.w("TAG", "Failed to read value.", error.toException())
             }
         })
-
-
-
-
-
         binding.reloadInfo.setOnClickListener {
             val intent = Intent(this, ChangeProfilActivity::class.java)
             intent.putExtra("email", email)

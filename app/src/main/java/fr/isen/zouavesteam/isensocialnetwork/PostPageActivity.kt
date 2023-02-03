@@ -1,10 +1,10 @@
 package fr.isen.zouavesteam.isensocialnetwork
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -41,11 +41,17 @@ class PostPageActivity : AppCompatActivity() {
 
         binding.personnage.setOnClickListener {
             val intent = Intent(this, UserProfileActivity::class.java)
+            intent.putExtra("USER", username)
             startActivity(intent)
+
         }
 
         binding.home.setOnClickListener {
-            Toast.makeText(applicationContext, "Vous êtes déja sur cette page", Toast.LENGTH_SHORT)
+            Toast.makeText(
+                applicationContext,
+                "Vous êtes déja sur cette page",
+                Toast.LENGTH_SHORT
+            )
                 .show();
         }
 
@@ -58,45 +64,47 @@ class PostPageActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        Firebase.database.getReference("posts").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.children.map {
-                    val post = it.getValue<Post>()
-                    post?.id = it.key
-                    return@map post
+
+        Firebase.database.getReference("posts")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val value = snapshot.children.map {
+                        val post = it.getValue<Post>()
+                        post?.id = it.key
+                        return@map post
+                    }
+                    Log.d("TAG", "Value is: " + value?.first()?.description)
+                    handleAPIData(value as ArrayList<Post>)
                 }
-                Log.d("TAG", "Value is: " + value?.first()?.description)
-                handleAPIData(value as ArrayList<Post>)
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.w("TAG", "Failed to read value.", error.toException())
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w("TAG", "Failed to read value.", error.toException())
+                }
+            })
 
-        /*
-            findViewById<Button>(R.id.mainAction).setOnClickListener {
-                // Write a message to the database
-                val database = Firebase.database
-                val myRef = database.getReference("message")
-                myRef.setValue("Hello, World!")
-            }
-
-
-            */
     }
 
+    /*
+        findViewById<Button>(R.id.mainAction).setOnClickListener {
+            // Write a message to the database
+            val database = Firebase.database
+            val myRef = database.getReference("message")
+            myRef.setValue("Hello, World!")
+        }
 
 
-    private fun ButtonAddPostActivity(User: String) {
+        */
+    fun ButtonAddPostActivity(User: String) {
         intent = Intent(this, AddPostActivity::class.java)
         intent.putExtra("USER", User)
         startActivity(intent)
 
     }
 
-    private fun handleAPIData(data: ArrayList<Post>) {
+    fun handleAPIData(data: ArrayList<Post>) {
         val adapter = binding.recyclerPostView.adapter as NetworkAdapter
         adapter.refreshList(data)
+
     }
 }
+

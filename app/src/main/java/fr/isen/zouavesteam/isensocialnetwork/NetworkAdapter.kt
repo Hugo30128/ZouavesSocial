@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -78,10 +79,16 @@ public class NetworkAdapter(
         holder.butonlike.setOnClickListener {
             val currentValue = holder.textlike.text.toString().toInt()
             val newValue = currentValue + 1
+            val like = item.like + newValue
+
+
             holder.textlike.text = newValue.toString()
             Firebase.database.getReference("posts/${item.id}/like").setValue(
                 newValue.toString()
             )
+
+            Firebase.database.getReference("posts/").push()
+                .setValue(Post(like))
         }
 
         holder.butondislike.setOnClickListener {
@@ -100,4 +107,5 @@ public class NetworkAdapter(
     }
 
 }
+
 
