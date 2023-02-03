@@ -69,7 +69,7 @@
 
     <TextView
         android:id="@+id/detailDescription"
-        android:layout_width="407dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:selectAllOnFocus="true"
@@ -80,7 +80,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/detailCommentaire"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailImage" />
 
