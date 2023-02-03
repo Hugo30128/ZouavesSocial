@@ -87,8 +87,8 @@ public class NetworkAdapter(
                 newValue.toString()
             )
 
-            Firebase.database.getReference("posts/").push()
-                .setValue(Post(like))
+           /* Firebase.database.getReference("posts/").push()
+                .setValue(Post(like))*/
         }
 
         holder.butondislike.setOnClickListener {
